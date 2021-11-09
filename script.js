@@ -1,3 +1,4 @@
+let buttons = document.getElementsByClassName('buttons');
 
 function getHTMLForAnimal(animal) {
     return `
@@ -11,9 +12,10 @@ function getHTMLForAnimal(animal) {
   `;
   }
 
- 
-
   function initLionButton() {
+
+    let lionButton = document.getElementById('lion-link');
+
 
      // each animal object has the following properties
       // 
@@ -37,7 +39,20 @@ function getHTMLForAnimal(animal) {
       // event handler.
       // https://www.w3schools.com/jsref/met_document_addeventlistener.asp
       
-
+      for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', (e)=>{
+            let name = e.target.id.split('-')[0];
+            let typeId = zoo.animalTypes.find(x=>x.name === name).id;
+            let animalsOfType = zoo.animals.filter(x=>x.typeId === typeId);
+            let html = '';
+            html = animalsOfType.map(x=>getHTMLForAnimal(x)).join('');
+            // for(let i = 0; i < animalsOfType.length; i++){
+            //   html += getHTMLForAnimal(animalsOfType[i]);
+            // }
+            let mainContentEl = document.getElementById('main-content');
+            mainContentEl.innerHTML = html;
+        });
+    }
       // within the body of the event handler....
 
       // step 3: create a variable to hold the animal
@@ -59,3 +74,4 @@ function getHTMLForAnimal(animal) {
 
   initLionButton();
 
+console.log(zoo);
