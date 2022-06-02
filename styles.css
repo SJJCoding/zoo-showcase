@@ -10,6 +10,7 @@ body {
 
 .buttons {
   margin-bottom:20px;
+  
 }
 
 .animals {
@@ -21,4 +22,10 @@ body {
 
 label {
   font-weight:bold;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
 }
